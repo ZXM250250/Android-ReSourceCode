@@ -14281,6 +14281,7 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
     public boolean dispatchTouchEvent(MotionEvent event) {
         /**
          *这里是view的dispatchTouchEvent  其实主要用来消费事件的
+         *
          */
         // If the event should be handled by accessibility focus first.
         if (event.isTargetAccessibilityFocus()) {

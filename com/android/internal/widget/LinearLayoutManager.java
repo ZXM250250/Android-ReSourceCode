@@ -460,6 +460,9 @@ public class LinearLayoutManager extends RecyclerView.LayoutManager implements
 
     /**
      * {@inheritDoc}
+     * 先寻找页面当前的锚点
+     * 以这个锚点未基准，向上和向下分别填充
+     * 填充完后，如果还有剩余的可填充大小，再填充一次
      */
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {

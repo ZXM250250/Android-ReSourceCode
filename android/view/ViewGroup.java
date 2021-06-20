@@ -3152,8 +3152,14 @@ public abstract class ViewGroup extends View implements ViewParent, ViewManager 
         if (cancel || oldAction == MotionEvent.ACTION_CANCEL) {
             event.setAction(MotionEvent.ACTION_CANCEL);
             if (child == null) {
+                /**
+                 * 事件向上传  其实是交给了自己处理
+                 */
                 handled = super.dispatchTouchEvent(event);
             } else {
+                /**
+                 * 事件传给儿子们 也就是交给子view处理
+                 */
                 handled = child.dispatchTouchEvent(event);
             }
             event.setAction(oldAction);

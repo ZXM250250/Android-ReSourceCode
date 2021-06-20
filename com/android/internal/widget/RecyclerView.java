@@ -3490,7 +3490,11 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
      * - If necessary, run predictive layout and save its information
      */
     /**
-     *
+     * /**
+     *      * 1.处理Adapter的更新
+     *      * 2.决定那些动画需要执行
+     *      * 3.保存当前View的信息
+     *      * 4.如果必要的话，执行上一个Layout的操作并且保存他的信息
      */
     private void dispatchLayoutStep1() {
         mState.assertLayoutStep(State.STEP_START);
@@ -5631,7 +5635,9 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
                             + "position " + position + "(offset:" + offsetPosition + ")."
                             + "state:" + mState.getItemCount());
                 }
-
+                /**
+                 * 平常自己实现的方法
+                 */
                 final int type = mAdapter.getItemViewType(offsetPosition);
                 // 2) Find from scrap/cache via stable ids, if exists
                 if (mAdapter.hasStableIds()) {
@@ -6049,6 +6055,7 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
             }
         }
 
+
         ViewHolder getChangedScrapViewForPosition(int position) {
             // If pre-layout, check the changed scrap for an exact match.
             final int changedScrapSize;
@@ -6086,6 +6093,13 @@ public class RecyclerView extends ViewGroup implements ScrollingView, NestedScro
          * @param position Item position
          * @param dryRun  Does a dry run, finds the ViewHolder but does not remove
          * @return a ViewHolder that can be re-used for this position.
+         */
+        /**
+         * 1.从mAttachedScrap中获取
+         * 2.从HiddenView中获取
+         * 3.从CacheView获取
+         * @param position
+         * @return
          */
         ViewHolder getScrapOrHiddenOrCachedHolderForPosition(int position, boolean dryRun) {
             final int scrapCount = mAttachedScrap.size();
